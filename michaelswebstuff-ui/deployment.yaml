@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: michaelswebstuff-ui
+  namespace: michaelswebstuff-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: michaelswebstuff-ui
+  template:
+    metadata:
+      labels:
+        app: michaelswebstuff-ui
+    spec:
+      containers:
+        - name: michaelswebstuff-ui
+          image: medwards2009/michaelswebstuff-ui:latest
+          ports:
+            - containerPort: 8080
