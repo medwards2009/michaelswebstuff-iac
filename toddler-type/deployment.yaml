@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: toddler-type
+  namespace: toddler-type
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: toddler-type
+  template:
+    metadata:
+      labels:
+        app: toddler-type
+    spec:
+      containers:
+        - name: toddler-type
+          image: medwards2009/toddler-type:latest
+          ports:
+            - containerPort: 8080

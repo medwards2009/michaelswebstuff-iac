@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: toddler-type-ingress
+  namespace: toddler-type
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: toddler-type.michaelswebstuff.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: toddler-type-service
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - toddler-type.michaelswebstuff.com
+      secretName: toddler-type-tls

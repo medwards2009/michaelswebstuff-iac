@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: toddler-type-certificate # <-- Replace with your certificate name
+  namespace: toddler-type # <-- Replace with your namespace
+spec:
+  secretName: toddler-type-tls # <-- Replace with your secret name
+  issuerRef:
+    name: letsencrypt-issuer # <-- Replace with your issuer name
+    kind: ClusterIssuer
+  dnsNames:
+    - toddler-type.michaelswebstuff.com # <-- Replace with your hostname

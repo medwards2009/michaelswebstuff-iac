@@ -3,6 +3,9 @@ kind: Ingress
 metadata:
   name: michaelswebstuff-ui-ingress
   namespace: michaelswebstuff-ui
+  # uncomment to enable middleware which forces users to use https rather then http
+  # annotations:
+  #   traefik.ingress.kubernetes.io/router.middlewares: michaelswebstuff-ui-redirect-https@kubernetescrd
 spec:
   ingressClassName: traefik
   rules:
