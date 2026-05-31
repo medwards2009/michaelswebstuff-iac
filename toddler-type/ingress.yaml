@@ -13,7 +13,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: toddler-type-service
+                name: toddler-type
                 port:
                   number: 80
   tls:
