@@ -1,0 +1,10 @@
+# Manual setup notes containing secret values / commands
+INSTRUCTIONS.md
+
+# Local env / secrets
+*.env
+.env
+*.secret.yaml
+
+# OS / editor cruft
+.DS_Store

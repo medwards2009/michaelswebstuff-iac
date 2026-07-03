@@ -1,0 +1,37 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: kube-prometheus-stack
+  namespace: kube-system
+spec:
+  chart: kube-prometheus-stack
+  repo: https://prometheus-community.github.io/helm-charts
+  targetNamespace: observability
+  createNamespace: true
+  valuesContent: |-
+    grafana:
+      # Admin credentials are read from a pre-created secret rather than
+      # committed here in plaintext. See INSTRUCTIONS.md for the kubectl
+      # command that creates the `grafana-admin-credentials` secret in the
+      # `observability` namespace.
+      admin:
+        existingSecret: grafana-admin-credentials
+        userKey: admin-user
+        passwordKey: admin-password
+      ingress:
+        enabled: true
+        ingressClassName: traefik
+        # cert-manager issues the grafana-tls secret automatically via the
+        # letsencrypt-issuer ClusterIssuer (HTTP-01), matching how the other
+        # apps in this repo obtain certificates. No manual secret needed.
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-issuer
+        hosts:
+          - grafana.michaelswebstuff.com
+        tls:
+          - secretName: grafana-tls
+            hosts:
+              - grafana.michaelswebstuff.com
+    prometheus:
+      prometheusSpec:
+        retention: 15d
