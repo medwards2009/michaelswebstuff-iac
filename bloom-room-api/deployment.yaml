@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bloom-room-api
+  namespace: bloom-room-api
+spec:
+  # Keep at 1 while the app runs TypeORM synchronize: true — concurrent schema
+  # sync from multiple replicas against one database is unsafe. Do not scale up
+  # until migrations land (tracked in the app repo's docs/build-plan.md).
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bloom-room-api
+  template:
+    metadata:
+      labels:
+        app: bloom-room-api
+    spec:
+      containers:
+        - name: bloom-room-api
+          image: medwards2009/bloom-room-api:latest
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: bloom-room-api-config
+            - secretRef:
+                name: bloom-room-api-secrets
+          # /health is public and returns 200 only when the DB is reachable, 503
+          # otherwise — exactly what readiness wants. Give it initial delay so it
+          # isn't fighting TypeORM's startup connection.
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          # Liveness is a plain TCP check, NOT /health — pointing liveness at
+          # /health would restart the pod during a transient DB blip and turn a
+          # brief outage into a crash loop.
+          livenessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            timeoutSeconds: 5
+            failureThreshold: 3

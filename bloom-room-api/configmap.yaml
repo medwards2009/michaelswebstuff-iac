@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bloom-room-api-config
+  namespace: bloom-room-api
+data:
+  NODE_ENV: "production"
+  PORT: "8080"
+  # Postgres lives in its own namespace (bloom-room-db), so this must be the
+  # cross-namespace FQDN, not the bare service name.
+  DB_HOST: "bloom-room-postgres.bloom-room-db.svc.cluster.local"
+  DB_PORT: "5432"
+  DB_USER: "bloom"
+  DB_NAME: "bloom_room"
+  # Must stay false in the cluster. When true the API accepts any unverified
+  # string as a login identity (no Google check). It defaults to false if unset.
+  AUTH_DEV_MODE: "false"
+  JWT_EXPIRES_IN: "7d"
+  # Public OAuth client IDs shipped in the web/mobile clients (not secret).
+  # GOOGLE_CLIENT_IDS is comma-separated and must include GOOGLE_WEB_CLIENT_ID.
+  # TODO(michael): fill these in — see the note at the end of the PR/hand-off.
+  GOOGLE_CLIENT_IDS: "REPLACE_ME"
+  GOOGLE_WEB_CLIENT_ID: "REPLACE_ME"
+  # CORS_ORIGINS is intentionally unset for now. bloom-room-ui isn't deployed
+  # yet and native mobile clients don't need it; unset means cross-origin browser
+  # requests are refused (the safe default). Add it as a comma-separated list of
+  # browser origins when the UI lands.
