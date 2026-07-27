@@ -1,3 +1,5 @@
+# NOTE: this cors policy is currently dormant.
+# to make it effective, you will need to wire it into the ingress manifest via an annotation
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:

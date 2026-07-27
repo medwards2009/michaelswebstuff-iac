@@ -18,10 +18,6 @@ data:
   JWT_EXPIRES_IN: "7d"
   # Public OAuth client IDs shipped in the web/mobile clients (not secret).
   # GOOGLE_CLIENT_IDS is comma-separated and must include GOOGLE_WEB_CLIENT_ID.
-  # TODO(michael): fill these in — see the note at the end of the PR/hand-off.
-  GOOGLE_CLIENT_IDS: "REPLACE_ME"
-  GOOGLE_WEB_CLIENT_ID: "REPLACE_ME"
-  # CORS_ORIGINS is intentionally unset for now. bloom-room-ui isn't deployed
-  # yet and native mobile clients don't need it; unset means cross-origin browser
-  # requests are refused (the safe default). Add it as a comma-separated list of
-  # browser origins when the UI lands.
+  GOOGLE_CLIENT_IDS: "205079085321-iu7jddl3lkqcbpg25r51men5ote91d5u.apps.googleusercontent.com"
+  GOOGLE_WEB_CLIENT_ID: "205079085321-iu7jddl3lkqcbpg25r51men5ote91d5u.apps.googleusercontent.com"
+  CORS_ORIGINS: "http://localhost:5173,https://bloomroom.michaelswebstuff.com"
