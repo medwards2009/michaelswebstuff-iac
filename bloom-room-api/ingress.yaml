@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bloom-room-api-ingress
+  namespace: bloom-room-api
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: bloomroom-api.michaelswebstuff.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: bloom-room-api-service
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - bloomroom-api.michaelswebstuff.com
+      secretName: bloom-room-api-tls
