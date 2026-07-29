@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bloom-room-web
+  namespace: bloom-room-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bloom-room-web
+  template:
+    metadata:
+      labels:
+        app: bloom-room-web
+    spec:
+      containers:
+        - name: bloom-room-web
+          image: medwards2009/bloom-room-web:latest
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: bloom-room-web-config
