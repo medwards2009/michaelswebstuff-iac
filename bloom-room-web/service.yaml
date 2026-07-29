@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: bloom-room-web-service
+  namespace: bloom-room-web
+spec:
+  selector:
+    app: bloom-room-web
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: ClusterIP

@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bloom-room-web-config
+  namespace: bloom-room-web
+data:
+  # The image renders these into /config.js at container startup (see the app's
+  # deploy/docker-entrypoint.d/40-render-config.sh), so they take effect at
+  # runtime — no rebuild needed. All VITE_-prefixed, browser-safe, non-secret.
+
+  # Public origin the browser calls. NOT the app repo's dev value
+  # (http://localhost:8080) — that points at the developer's own machine. This is
+  # the deployed API, which allow-lists https://bloomroom.michaelswebstuff.com in
+  # its CORS_ORIGINS.
+  VITE_API_URL: "https://bloomroom-api.michaelswebstuff.com"
+
+  # Google OAuth client ID — public, safe to expose to the browser.
+  VITE_GOOGLE_CLIENT_ID: "205079085321-iu7jddl3lkqcbpg25r51men5ote91d5u.apps.googleusercontent.com"
+
+  # Dev-only sign-in backdoor token. MUST be blank in production (per the app's
+  # .env.production.example) so the dev-login button can't be used against prod.
+  VITE_DEV_ID_TOKEN: ""

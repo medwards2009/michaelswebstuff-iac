@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: bloom-room-web-certificate
+  namespace: bloom-room-web
+spec:
+  secretName: bloom-room-web-tls
+  issuerRef:
+    name: letsencrypt-issuer
+    kind: ClusterIssuer
+  dnsNames:
+    - bloomroom.michaelswebstuff.com
