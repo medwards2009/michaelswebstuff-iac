@@ -1,3 +1,7 @@
+# This is not enabled because cloudflare handles
+# redirect to https for us. see commended out
+# annotation in ./indress.yaml
+# ---
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:

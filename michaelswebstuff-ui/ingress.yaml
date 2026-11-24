@@ -4,6 +4,8 @@ metadata:
   name: michaelswebstuff-ui-ingress
   namespace: michaelswebstuff-ui
   # uncomment to enable middleware which forces users to use https rather then http
+  # update: DO NOT uncomment this. doing this would cause a redirect loop due
+  # to our cloudflare tunnel setup
   # annotations:
   #   traefik.ingress.kubernetes.io/router.middlewares: michaelswebstuff-ui-redirect-https@kubernetescrd
 spec:

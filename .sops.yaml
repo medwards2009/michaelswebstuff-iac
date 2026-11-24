@@ -1,0 +1,5 @@
+creation_rules:
+  # Encrypt only Secret values so names and namespaces stay readable in diffs.
+  - path_regex: .*\.sops\.ya?ml$
+    encrypted_regex: ^(data|stringData)$
+    age: age1ptrfru89g8qpda2uxgnz62ka7pjtlyfdacgdcrq7tzza2ffkh3cs92x8cj
