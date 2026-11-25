@@ -21,17 +21,18 @@ spec:
       ingress:
         enabled: true
         ingressClassName: traefik
+        # DISABLED: Cloudflare handles TLS via the tunnel.
         # cert-manager issues the grafana-tls secret automatically via the
         # letsencrypt-issuer ClusterIssuer (HTTP-01), matching how the other
         # apps in this repo obtain certificates. No manual secret needed.
-        annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-issuer
+        # annotations:
+        #   cert-manager.io/cluster-issuer: letsencrypt-issuer
         hosts:
           - grafana.michaelswebstuff.com
-        tls:
-          - secretName: grafana-tls
-            hosts:
-              - grafana.michaelswebstuff.com
+        # tls:
+        #   - secretName: grafana-tls
+        #     hosts:
+        #       - grafana.michaelswebstuff.com
     prometheus:
       prometheusSpec:
         retention: 15d

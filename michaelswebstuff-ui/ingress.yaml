@@ -31,8 +31,9 @@ spec:
                 name: michaelswebstuff-ui-service
                 port:
                   number: 80
-  tls:
-    - hosts:
-        - michaelswebstuff.com
-        - www.michaelswebstuff.com
-      secretName: waittime-wizard-tls
+  # TLS is handled by Cloudflare (traffic arrives via the tunnel over HTTP).
+  # tls:
+  #   - hosts:
+  #       - michaelswebstuff.com
+  #       - www.michaelswebstuff.com
+  #     secretName: waittime-wizard-tls

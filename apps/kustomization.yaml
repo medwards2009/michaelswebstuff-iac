@@ -4,3 +4,9 @@ kind: Kustomization
 resources:
   - ../michaelswebstuff-ui
   - ../toddler-type
+  - ../cloudflared
+  - ../waittime-api
+  - ../bloom-room-web
+  - ../bloom-room-db
+  - ../bloom-room-api
+  - ../observability

@@ -16,7 +16,8 @@ spec:
                 name: bloom-room-web-service
                 port:
                   number: 80
-  tls:
-    - hosts:
-        - bloomroom.michaelswebstuff.com
-      secretName: bloom-room-web-tls
+  # TLS is handled by Cloudflare (traffic arrives via the tunnel over HTTP).
+  # tls:
+  #   - hosts:
+  #       - bloomroom.michaelswebstuff.com
+  #     secretName: bloom-room-web-tls

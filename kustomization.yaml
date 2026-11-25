@@ -2,5 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - cluster-scoped
+  # Let's Encrypt ClusterIssuer. Not needed with the Cloudflare tunnel (home
+  # server). Uncomment for a VPS, after installing cert-manager.
+  # - cluster-scoped
   - flux-system

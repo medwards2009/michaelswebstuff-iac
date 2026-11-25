@@ -22,7 +22,8 @@ spec:
                 name: waittime-api-service
                 port:
                   number: 80
-  tls:
-    - hosts:
-        - waittimes.michaelswebstuff.com
-      secretName: waittime-wizard-tls
+  # TLS is handled by Cloudflare (traffic arrives via the tunnel over HTTP).
+  # tls:
+  #   - hosts:
+  #       - waittimes.michaelswebstuff.com
+  #     secretName: waittime-wizard-tls

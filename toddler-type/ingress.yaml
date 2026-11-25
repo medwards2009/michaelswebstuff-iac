@@ -16,7 +16,8 @@ spec:
                 name: toddler-type
                 port:
                   number: 80
-  tls:
-    - hosts:
-        - toddler-type.michaelswebstuff.com
-      secretName: toddler-type-tls
+  # TLS is handled by Cloudflare (traffic arrives via the tunnel over HTTP).
+  # tls:
+  #   - hosts:
+  #       - toddler-type.michaelswebstuff.com
+  #     secretName: toddler-type-tls

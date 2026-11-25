@@ -13,3 +13,7 @@ spec:
   path: ./apps # path to where your app kustomization is
   prune: true
   wait: true
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
